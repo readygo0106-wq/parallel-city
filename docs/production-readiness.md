@@ -1,17 +1,17 @@
 # Production readiness
 
-Status: **functional local MVP; Supabase schema live; anonymous sign-in and public deployment pending**. This checklist records observed evidence, not intended future behavior.
+Status: **public MVP deployed; anonymous decision persistence pending the Supabase Auth provider switch**. This checklist records observed evidence, not intended future behavior.
 
 - [x] Production build passes locally (`pnpm build`)
-- [ ] GitHub repository connected
-- [ ] Vercel URL active
+- [x] GitHub `main` pushed and verified at commit `4e63833`
+- [x] Vercel production deployment Ready; all six public page routes return 200
 - [x] Supabase `parallel-city` project created in `readygo0106-wq's Org` (Singapore)
 - [x] Initial and aggregate-hardening migrations applied to the live database
 - [x] RLS enabled on all five exposed business tables; security advisor has no findings
-- [x] Public API returns the study location and zero aggregate counts; anonymous clients cannot read private decisions
+- [x] Public API returns the study location and zero aggregate counts; unsigned clients cannot read private decisions
 - [ ] Anonymous session verified against a live database
 - [ ] Decision persistence verified against a live database
-- [ ] Collective statistics verified against a live database
+- [x] Collective zero-state verified against the live database on the public site
 - [x] OpenAI Demo Mode available when no key is configured
 - [ ] Live OpenAI response verified with a key
 - [x] Real map renders with OpenStreetMap attribution in local browser
@@ -24,8 +24,8 @@ Status: **functional local MVP; Supabase schema live; anonymous sign-in and publ
 
 ## Public links
 
-- Production URL: pending Vercel deployment
-- GitHub repository: pending repository creation and authentication
+- Production URL: https://parallel-city.vercel.app
+- GitHub repository: https://github.com/readygo0106-wq/parallel-city
 
 ## Architecture
 
@@ -47,12 +47,14 @@ No privileged Supabase key is used. Local secrets go in `.env.local`; production
 - Open-Meteo: optional adapter implemented but not shown as scenario evidence.
 - eBird: optional adapter, unconnected without a key.
 - OpenAI: Demo Agent Mode until a real API call succeeds.
-- Supabase: schema and public aggregate connected. The project's Anonymous sign-ins provider is currently disabled, so browser decision writes remain unavailable until it is enabled.
+- Supabase: schema and public aggregate connected in project `wslhainvyagwrfrprxze`. The project's Anonymous sign-ins provider is currently disabled, so browser decision writes remain unavailable until it is enabled.
+- Vercel: production deployment is Ready and the public routes and artwork return HTTP 200. The first-hour error log query returned no errors. The deployment used the authenticated CLI; automatic GitHub deploys still need a GitHub Login Connection in Vercel.
 
 ## Known limitations and next steps
 
 1. Enable Anonymous sign-ins in the [new project's Auth providers](https://supabase.com/dashboard/project/wslhainvyagwrfrprxze/auth/providers), then verify an anonymous session, owner-scoped insert/read, cross-user denial, and aggregate increment. The public URL and publishable key are already configured locally in ignored `.env.local`.
 2. Add an OpenAI key only if live debate is desired; verify request limits and a real response. Demo Mode is production-safe for a keyless launch.
-3. Create the empty `readygo0106-wq/parallel-city` GitHub repository, connect a remote, deploy to Vercel, and run a clearly marked production test interaction. Remove the test result and decision afterward so public totals exclude the test.
+3. After anonymous sign-ins are enabled, run a clearly marked production test interaction. Remove the test result and decision afterward so public totals exclude the test.
 4. Verify live RLS isolation, anonymous write, aggregate update, direct refresh, and mobile navigation at the public URL.
-5. Replace branch-specific image treatments with dedicated future artwork when available and calibrate indices before making any stronger factual claims.
+5. Add a GitHub Login Connection to Vercel if automatic deployments from `main` are desired; CLI production deployment already works.
+6. Replace branch-specific image treatments with dedicated future artwork when available and calibrate indices before making any stronger factual claims.

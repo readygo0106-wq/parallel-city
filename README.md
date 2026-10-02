@@ -1,5 +1,7 @@
 # The Parallel City · Qingdao
 
+[Live preview](https://parallel-city.vercel.app) · [Production readiness](docs/production-readiness.md)
+
 An illustrated, interactive urban ecology scenario for the Zhongshan Road area. Visitors choose a bird perspective, explore four time lenses, hear four conditional viewpoints, choose an urban direction, and compare a speculative 2050 outcome. Completed anonymous decisions contribute to a public aggregate when Supabase is configured.
 
 **The future indicators are illustrative model values, not scientific predictions or official city forecasts.** The original project artwork remains the visual foundation; timelines, cards, choices, data graphics, and maps are interactive components.
@@ -44,7 +46,7 @@ Open `http://localhost:3000`. `pnpm dev` and `pnpm build` copy the matching MapL
 The main path runs without keys. It labels database results as unavailable and agent dialogue as Demo Mode. To enable persistence:
 
 1. Create a Supabase project and enable **Anonymous Sign-Ins** in Auth settings.
-2. Run `supabase/migrations/001_initial_schema.sql` in the project SQL editor or through Supabase migrations.
+2. Apply both SQL files in `supabase/migrations/` in numeric order. The second migration keeps public counts in a read-only summary table.
 3. Copy `.env.example` to `.env.local` and set `NEXT_PUBLIC_SUPABASE_URL` plus either `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` or `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
 4. Restart the dev server. For live agent dialogue, also set server-only `OPENAI_API_KEY`.
 
