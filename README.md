@@ -46,7 +46,7 @@ Open `http://localhost:3000`. `pnpm dev` and `pnpm build` copy the matching MapL
 The main path runs without keys. It labels database results as unavailable and agent dialogue as Demo Mode. To enable persistence:
 
 1. Create a Supabase project and enable **Anonymous Sign-Ins** in Auth settings.
-2. Apply both SQL files in `supabase/migrations/` in numeric order. The second migration keeps public counts in a read-only summary table.
+2. Apply the SQL files in `supabase/migrations/` in numeric order. The second migration keeps public counts in a read-only summary table; the third adds foreign-key indexes.
 3. Copy `.env.example` to `.env.local` and set `NEXT_PUBLIC_SUPABASE_URL` plus either `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` or `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
 4. Restart the dev server. For live agent dialogue, also set server-only `OPENAI_API_KEY`.
 
