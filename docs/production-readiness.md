@@ -3,7 +3,7 @@
 Status: **public MVP deployed; anonymous decision persistence pending the Supabase Auth provider switch**. This checklist records observed evidence, not intended future behavior.
 
 - [x] Production build passes locally (`pnpm build`)
-- [x] GitHub `main` pushed and verified at commit `4e63833`
+- [x] GitHub `main` pushed and verified
 - [x] Vercel production deployment Ready; all six public page routes return 200
 - [x] Supabase `parallel-city` project created in `readygo0106-wq's Org` (Singapore)
 - [x] Initial and aggregate-hardening migrations applied to the live database
