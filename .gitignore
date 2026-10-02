@@ -1,0 +1,11 @@
+node_modules/
+.pnpm-store/
+.next/
+out/
+.env*.local
+.vercel/
+public/maplibre/
+/public/raw-assets/
+.tmp/
+*.tsbuildinfo
+next-env.d.ts
